@@ -2,6 +2,10 @@
 
 
 
+# [3.0.0](https://github.com/valor-software/ng2-file-upload/compare/v1.4.1...v3.0.0) (2022-07-12)
+
+
+
 # [2.0.0-3](https://github.com/valor-software/ng2-file-upload/compare/v2.0.0-2...v2.0.0-3) (2021-09-07)
 
 
