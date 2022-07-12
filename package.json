@@ -1,13 +1,13 @@
 {
   "name": "ng2-file-upload-base",
-  "version": "2.0.0-3",
+  "version": "3.0.0",
   "private": true,
   "description": "Angular file upload directives",
   "scripts": {
     "ng": "nx",
     "start": "ng serve",
     "demo.build": "ng build",
-    "demo.build-prod": "ng build --prod",
+    "demo.build-prod": "ng build --configuration production",
     "build": "nx run ng2-file-upload:build",
     "build-prod": "nx run ng2-file-upload:build:production",
     "build.watch": "nx run ng2-file-upload:build --watch",
@@ -38,7 +38,6 @@
     "url": "https://github.com/valor-software/ng2-file-upload/issues"
   },
   "homepage": "https://github.com/valor-software/ng2-file-upload#readme",
-  "peerDependencies": {},
   "devDependencies": {
     "@angular-devkit/build-angular": "13.3.3",
     "@angular-eslint/eslint-plugin": "13.0.1",
@@ -65,7 +64,7 @@
     "@types/webpack": "^5.0.0",
     "@typescript-eslint/eslint-plugin": "5.18.0",
     "@typescript-eslint/parser": "5.18.0",
-    "bootstrap": "3.3.7",
+    "bootstrap": "^5.0.2",
     "classlist-polyfill": "1.2.0",
     "codecov": "3.8.2",
     "codelyzer": "^6.0.2",
@@ -123,7 +122,7 @@
     }
   ],
   "dependencies": {
-    "@nrwl/workspace": "13.10.2",
+    "@nrwl/workspace": "13.0.0",
     "nx": "13.10.2",
     "tslib": "^2.0.0"
   }

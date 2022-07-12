@@ -10,9 +10,7 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": [
-            "dist/libs/ng2-file-upload"
-          ],
+          "outputs": ["dist/libs/ng2-file-upload"],
           "options": {
             "tsConfig": "libs/ng2-file-upload/tsconfig.lib.json",
             "project": "libs/ng2-file-upload/ng-package.json"
@@ -26,19 +24,13 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/ng2-file-upload/**/*.ts"
-            ]
+            "lintFilePatterns": ["libs/ng2-file-upload/**/*.ts"]
           },
-          "outputs": [
-            "{options.outputFile}"
-          ]
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/ng2-file-upload"
-          ],
+          "outputs": ["coverage/libs/ng2-file-upload"],
           "options": {
             "jestConfig": "libs/ng2-file-upload/jest.config.js",
             "passWithNoTests": true
@@ -61,9 +53,7 @@
           }
         }
       },
-      "tags": [
-        "lib"
-      ]
+      "tags": ["lib"]
     },
     "ng2-file-upload-demo": {
       "root": "apps/demo",
@@ -77,11 +67,16 @@
             "index": "apps/demo/src/index.html",
             "main": "apps/demo/src/main.ts",
             "tsConfig": "apps/demo/tsconfig.json",
-            "assets": [
-              "apps/demo/src/assets"
-            ],
+            "assets": ["apps/demo/src/assets"],
             "styles": [],
-            "scripts": []
+            "scripts": [],
+            "aot": false,
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "dependsOn": [
             {
@@ -122,19 +117,13 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "apps/demo/**/*.ts"
-            ]
+            "lintFilePatterns": ["apps/demo/**/*.ts"]
           },
-          "outputs": [
-            "{options.outputFile}"
-          ]
+          "outputs": ["{options.outputFile}"]
         }
       },
       "tags": [],
-      "implicitDependencies": [
-        "ng2-file-upload"
-      ]
+      "implicitDependencies": ["ng2-file-upload"]
     }
   }
 }

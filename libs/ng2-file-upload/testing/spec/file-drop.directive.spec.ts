@@ -1,25 +1,23 @@
-import { Component, DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, DebugElement } from "@angular/core";
+import { By } from "@angular/platform-browser";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { FileUploader } from '../../file-upload/file-uploader.class';
-import { FileUploadModule } from '../../file-upload/file-upload.module';
-import { FileDropDirective } from '../../file-upload/file-drop.directive';
+import { FileUploader } from "../../file-upload/file-uploader.class";
+import { FileUploadModule } from "../../file-upload/file-upload.module";
+import { FileDropDirective } from "../../file-upload/file-drop.directive";
 
 @Component({
-  selector: 'container',
-  template: `<div type="file"
-                    ng2FileDrop
-                    [uploader]="uploader"
-             ></div>`
+  selector: "container",
+  template: `<div type="file" ng2FileDrop [uploader]="uploader"></div>`,
 })
 export class ContainerComponent {
-  public get url(): string { return 'localhost:3000'; }
+  public get url(): string {
+    return "localhost:3000";
+  }
   public uploader: FileUploader = new FileUploader({ url: this.url });
 }
 
-describe('Directive: FileDropDirective', () => {
-
+describe("Directive: FileDropDirective", () => {
   let fixture: ComponentFixture<ContainerComponent>;
   let hostComponent: ContainerComponent;
   let directiveElement: DebugElement;
@@ -27,9 +25,9 @@ describe('Directive: FileDropDirective', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ FileUploadModule ],
-      declarations: [ ContainerComponent, FileDropDirective ],
-      providers: [ ContainerComponent ]
+      imports: [FileUploadModule],
+      declarations: [ContainerComponent, FileDropDirective],
+      providers: [ContainerComponent],
     });
   });
 
@@ -39,21 +37,25 @@ describe('Directive: FileDropDirective', () => {
 
     fixture.detectChanges();
 
-    directiveElement = fixture.debugElement.query(By.directive(FileDropDirective));
-    fileDropDirective = directiveElement.injector.get(FileDropDirective) as FileDropDirective;
+    directiveElement = fixture.debugElement.query(
+      By.directive(FileDropDirective)
+    );
+    fileDropDirective = directiveElement.injector.get(
+      FileDropDirective
+    ) as FileDropDirective;
   });
 
-  it('can be initialized', () => {
+  it("can be initialized", () => {
     expect(fixture).toBeDefined();
     expect(hostComponent).toBeDefined();
     expect(fileDropDirective).toBeDefined();
   });
 
-  it('can set file uploader', () => {
+  it("can set file uploader", () => {
     expect(fileDropDirective.uploader).toBe(hostComponent.uploader);
   });
 
-  it('can get uploader options', () => {
+  it("can get uploader options", () => {
     const options = fileDropDirective.getOptions();
 
     // Check url set through binding
@@ -68,73 +70,79 @@ describe('Directive: FileDropDirective', () => {
     }
   });
 
-  it('can get filters', () => {
+  it("can get filters", () => {
     const filters = fileDropDirective.getFilters();
 
     // TODO: Update test once implemented
     expect(filters).toBeFalsy();
   });
 
-  it('handles drop event', () => {
+  it("handles drop event", () => {
     //@ts-ignore
-    const drop = jest.spyOn(fileDropDirective, 'onDrop');
-    directiveElement.triggerEventHandler('drop', getFakeEventData());
+    const drop = jest.spyOn(fileDropDirective, "onDrop");
+    directiveElement.triggerEventHandler("drop", getFakeEventData());
 
     expect(drop).toHaveBeenCalled();
   });
 
-  it('adds file to upload', () => {
+  it("adds file to upload", () => {
     let addToQueue;
     if (fileDropDirective.uploader?.addToQueue) {
       //@ts-ignore
-      addToQueue = jest.spyOn(fileDropDirective.uploader, 'addToQueue');
+      addToQueue = jest.spyOn(fileDropDirective.uploader, "addToQueue");
     }
 
     let fileOverData;
-    fileDropDirective.fileOver.subscribe((data: any) => fileOverData = data);
+    fileDropDirective.fileOver.subscribe((data: any) => (fileOverData = data));
 
     let fileDropData;
-    fileDropDirective.onFileDrop.subscribe((data: File[]) => fileDropData = data);
+    fileDropDirective.onFileDrop.subscribe(
+      (data: File[]) => (fileDropData = data)
+    );
 
     fileDropDirective.onDrop(getFakeEventData());
 
     const uploadedFiles = getFakeEventData().dataTransfer.files;
 
-    expect(addToQueue).toHaveBeenCalledWith(uploadedFiles, fileDropDirective.getOptions(), fileDropDirective.getFilters());
+    expect(addToQueue).toHaveBeenCalledWith(
+      uploadedFiles,
+      fileDropDirective.getOptions(),
+      fileDropDirective.getFilters()
+    );
     expect(fileOverData).toBeFalsy();
     expect(fileDropData).toEqual(uploadedFiles);
   });
 
-  it('handles dragover event', () => {
+  it("handles dragover event", () => {
     //@ts-ignore
-    jest.spyOn(fileDropDirective, 'onDragOver');
+    jest.spyOn(fileDropDirective, "onDragOver");
 
-    directiveElement.triggerEventHandler('dragover', getFakeEventData());
+    directiveElement.triggerEventHandler("dragover", getFakeEventData());
 
     expect(fileDropDirective.onDragOver).toHaveBeenCalled();
   });
 
-  it('handles file over', () => {
+  it("handles file over", () => {
     let fileOverData;
-    fileDropDirective.fileOver.subscribe((data: any) => fileOverData = data);
+    fileDropDirective.fileOver.subscribe((data: any) => (fileOverData = data));
 
     fileDropDirective.onDragOver(getFakeEventData());
 
     expect(fileOverData).toBeTruthy();
   });
 
-  it('handles dragleave event', () => {
+  it("handles dragleave event", () => {
     //@ts-ignore
-    jest.spyOn(fileDropDirective, 'onDragLeave');
+    jest.spyOn(fileDropDirective, "onDragLeave");
 
-    directiveElement.triggerEventHandler('dragleave', getFakeEventData());
+    directiveElement.triggerEventHandler("dragleave", getFakeEventData());
 
     expect(fileDropDirective.onDragLeave).toHaveBeenCalled();
   });
 
-  it('handles file over leave', () => {
+  it("handles file over leave", () => {
     let fileOverData;
-    fileDropDirective.fileOver.subscribe((data: any) => fileOverData = data);
+    fileDropDirective.fileOver.subscribe((data: any) => (fileOverData = data));
 
     fileDropDirective.onDragLeave(getFakeEventData());
 
@@ -145,10 +153,10 @@ describe('Directive: FileDropDirective', () => {
 function getFakeEventData(): any {
   return {
     dataTransfer: {
-      files: [ 'foo.bar' ],
-      types: [ 'Files' ]
+      files: ["foo.bar"],
+      types: ["Files"],
     },
     preventDefault: () => undefined,
-    stopPropagation: () => undefined
+    stopPropagation: () => undefined,
   };
 }
