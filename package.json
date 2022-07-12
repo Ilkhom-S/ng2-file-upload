@@ -1,7 +1,7 @@
 {
-  "name": "ng2-file-upload-base",
+  "name": "@isim/ng2-file-upload-base",
   "version": "3.0.0",
-  "private": true,
+  "private": false,
   "description": "Angular file upload directives",
   "scripts": {
     "ng": "nx",
@@ -52,12 +52,12 @@
     "@angular/forms": "13.3.3",
     "@angular/platform-browser": "13.3.3",
     "@angular/platform-browser-dynamic": "13.3.3",
-    "@nrwl/angular": "13.10.2",
-    "@nrwl/cli": "13.10.2",
-    "@nrwl/eslint-plugin-nx": "13.10.2",
-    "@nrwl/jest": "13.10.2",
-    "@nrwl/linter": "13.10.2",
-    "@nrwl/node": "13.10.2",
+    "@nrwl/angular": "13.10.6",
+    "@nrwl/cli": "13.10.6",
+    "@nrwl/eslint-plugin-nx": "13.10.6",
+    "@nrwl/jest": "13.10.6",
+    "@nrwl/linter": "13.10.6",
+    "@nrwl/node": "13.10.6",
     "@types/fs-extra": "9.0.7",
     "@types/jest": "27.0.2",
     "@types/node": "^12.11.1",
@@ -83,6 +83,7 @@
     "markdown-loader": "^6.0.0",
     "ng-packagr": "13.3.1",
     "ngx-bootstrap": "8.0.0",
+    "ngx-deploy-npm": "^4.1.1",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.3.9",
     "postcss-import": "^14.0.2",
@@ -122,8 +123,8 @@
     }
   ],
   "dependencies": {
-    "@nrwl/workspace": "13.0.0",
-    "nx": "13.10.2",
+    "@nrwl/workspace": "13.10.6",
+    "nx": "13.10.6",
     "tslib": "^2.0.0"
   }
 }
